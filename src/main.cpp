@@ -24,7 +24,8 @@ bool vectorHas(vector<string> &employees, string query);
 
 /**
  * @brief Reads files of employee names and builds a randomized
- * secret santa list by pairing names
+ * secret santa list by pairing names. [This program is made to a
+ * given specification.]
  */
 int main()
 {
