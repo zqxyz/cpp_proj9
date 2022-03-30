@@ -18,8 +18,6 @@ private:
     vector<T> bag;
 };
 
-// TODO https://www.youtube.com/watch?v=I-hZkUa9mIs DELETE THIS
-
 template <typename T>
 Bag<T>::Bag() // empty bag
 {
