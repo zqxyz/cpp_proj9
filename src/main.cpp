@@ -47,12 +47,18 @@ int main()
     sortNames(employees);
 
     // Output name pairs
+    cout << setw(13) << left // Print column headers
+         << "Gifter"
+         << " "
+         << "Giftee" << '\n';
+
     string gifter, giftee, rejectedName;
 
-    gifter = employees[0];
-    giftee = employeeBag.remove();
-    for (int i = 1; i < (int)employees.size()-1; i++)
+    for (int i = 0; i < (int)employees.size(); i++)
     {
+        gifter = employees[i];
+        giftee = employeeBag.remove();
+
         if (gifter == giftee) // if person is paired with themself
         {
             rejectedName = giftee;            // Store employee name
@@ -64,10 +70,6 @@ int main()
         cout << setw(13) << left
              << gifter << " "
              << giftee << '\n';
-
-        // Set next names
-        gifter = employees[i];
-        giftee = employeeBag.remove();
     }
 
     return 0;
@@ -77,16 +79,16 @@ int main()
 void loadNames(Bag<string> &employeeBag, vector<string> &employees,
                string file1, string file2)
 {
-    const int numFiles = {2};
-    string files[numFiles] = {file1, file2};
-    ifstream fileIn;
+    const int numFiles = {2};                // Number of files
+    string files[numFiles] = {file1, file2}; // Array of files
+    ifstream fileIn;                         // File stream
 
     // One loop per file
     for (int i = 0; i < numFiles; i++)
     {
         string file = files[i];
         fileIn.open(file);
-        if (!fileIn) // Abort on failure
+        if (!fileIn) // Abort with message on failure
         {
             cerr << "Could not open " << file << endl;
         }
@@ -97,33 +99,36 @@ void loadNames(Bag<string> &employeeBag, vector<string> &employees,
         while (!fileIn.fail()) // Loop until nothing left to read
         {
 
-            if (!vectorHas(employees, str))
+            if (!vectorHas(employees, str)) // If name is not already stored
             {
+                // Add to both vector and Bag
                 employeeBag.insert(str);
                 employees.push_back(str);
             }
-            fileIn >> str;
+            fileIn >> str; // Load next name
         }
 
-        fileIn.close();
+        fileIn.close(); // Close file stream
     }
 }
 
 // Comparator for sortNames
 bool compareAlpha(string a, string b)
 {
-    return a[0] < b[0];
+    return a[0] < b[0]; // compares first char by alpha order
 }
 
 // POST: Names in given vector are alphabetically sorted
 void sortNames(vector<string> &names)
 {
+    // sort vector by using compareAlpha function
     sort(names.begin(), names.end(), compareAlpha);
 }
 
 // Checks if vector contains a string
 bool vectorHas(vector<string> &employees, string query)
 {
+    // Use <algorithm> find to check for existing element 
     if (find(employees.begin(), employees.end(), query) == employees.end() ||
         employees.back() == query)
         return false;

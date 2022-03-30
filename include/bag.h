@@ -21,7 +21,7 @@ private:
 template <typename T>
 Bag<T>::Bag() // empty bag
 {
-    srand(time(NULL));
+    srand(time(NULL)); // Seed randomizer
 }
 
 template <typename T>
