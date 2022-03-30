@@ -33,15 +33,11 @@ int main()
     Bag<string> employeeBag;  // Bag of employee names
     string file1, file2;
 
-    // Get filenames
-    // cout << "Enter first store filename: ";
-    // cin >> file1;
-    // cout << "Enter second store filename: ";
-    // cin >> file2;
-    // cout << endl;
-
-    file2 = "bangor.txt";
-    file1 = "brewer.txt";
+    cout << "Enter first store filename: ";
+    cin >> file1;
+    cout << "Enter second store filename: ";
+    cin >> file2;
+    cout << endl;
 
     // Load and sort names from user specified files
     loadNames(employeeBag, employees, file1, file2);
